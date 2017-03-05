@@ -19,6 +19,7 @@ function loadMovie() {
         if (request.action == "getSource") {
             html = request.source;
             firstChar = html.indexOf("<title>");
+            // get title and year
             title = html.substring(firstChar + 6, html.indexOf(" - IMDb", firstChar) - 6);
             year = html.substring(firstChar + title.length + 7, firstChar + title.length + 11);
         }
