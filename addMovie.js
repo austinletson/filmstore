@@ -17,9 +17,14 @@ function loadMovie() {
     alert("Loading movie");
     chrome.runtime.onMessage.addListener(function(request, sender) {
         if (request.action == "getSource") {
-            message.innerText = request.source;
+            html = request.source;
+            firstChar = html.indexOf("<title>");
+            title = html.substring(firstChar + 6, html.indexOf(" - IMDb", firstChar) - 6);
+            year = html.substring(firstChar + title.length + 7, firstChar + title.length + 11);
         }
     });
+    
+    
 }
 
 
