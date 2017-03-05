@@ -22,7 +22,22 @@ function loadMovie() {
     });
 }
 
+function getOMDb(title, year) {
+    var xhr = new XMLHttpRequest();
+    var request = "http://www.omdbapi.com/?t=".concat(title, "&y=", year)
+    xhr.open('GET', request,  true);
+    xhr.send();
+    xhr.addEventListener("readystatechange", processRequest, false);
 
+    xhr.onreadystatechange = processRequest;
+
+    function processRequest(e) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = JSON.parse(xhr.responseText);
+            message.innerText = response.Title;
+        }
+    }
+}
 
 
 

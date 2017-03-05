@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
 
-    "name": "Watchlist",
+    "name": "filmstore",
     "description": "Simple movie watchlist handler",
     "version": "0.1",
 
