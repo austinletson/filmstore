@@ -25,7 +25,7 @@ function loadMovie(id) {
 
     xhr.onreadystatechange = processRequest;
 
-
+    var isDone = false;
     function processRequest(e) {
         if (xhr.readyState == 4 && xhr.status == 200 && isDone == false) {
             var response = JSON.parse(xhr.responseText);
