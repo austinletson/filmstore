@@ -22,10 +22,9 @@ function loadMovie() {
             // get title and year
             title = html.substring(firstChar + 6, html.indexOf(" - IMDb", firstChar) - 6);
             year = html.substring(firstChar + title.length + 7, firstChar + title.length + 11);
+            getOMDb(title, year);
         }
     });
-    
-    
 }
 
 function getOMDb(title, year) {
@@ -37,15 +36,17 @@ function getOMDb(title, year) {
 
     xhr.onreadystatechange = processRequest;
 
+    var isDone = false;
+
     function processRequest(e) {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200 && !isDone) {
             var response = JSON.parse(xhr.responseText);
-            message.innerText = response.Title;
+            addMovie(response.Title, response.Year);
+            updateMovieList();
+            isDone = true;
         }
     }
 }
-
-
 
 function onWindowLoad() {
     var message = document.querySelector('#message');
