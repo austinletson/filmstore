@@ -1,8 +1,7 @@
-var dom = "dom is not here yet";
-
+/** grabs url and checks it for imdb*/
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, checkUrl);
 
-
+/** checks if user is on imdb and loads movie if they are*/
 function checkUrl(tabs) {
     var imdbRegex = /http:\/\/www.imdb.com\/title/;
     var url = tabs[0].url;
@@ -15,7 +14,7 @@ function checkUrl(tabs) {
 
 }
 
-var loaded = false;
+/** loads current movie */
 function loadMovie(id) {
     var xhr = new XMLHttpRequest();
     var request = "https://api.themoviedb.org/3/movie/".concat(id, "?api_key=18da41385acb8a93f0771cebf418f8a9");
@@ -26,7 +25,6 @@ function loadMovie(id) {
 
     xhr.onreadystatechange = processRequest;
 
-    var isDone = false;
 
     function processRequest(e) {
         if (xhr.readyState == 4 && xhr.status == 200 && isDone == false) {
@@ -37,9 +35,8 @@ function loadMovie(id) {
     }
 
 }
-
+/** displays watchlist and current movie to popup.html */
 function displayData(movies, currentMovie) {
-    currentMovie.innerText = currentMovie.title;
     var poster = document.createElement("IMG");
     poster.setAttribute("src", "https://image.tmdb.org/t/p/w500".concat(currentMovie.imgId));
     poster.setAttribute("width", "91");
