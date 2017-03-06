@@ -46,24 +46,20 @@ function getOMDb(title, year) {
         if (xhr.readyState == 4 && xhr.status == 200 && isDone == false) {
             var response = JSON.parse(xhr.responseText);
             addMovie(response.Title, response.Year);
-            updateMovieList();
+            //updateMovieList();
             isDone = true;
         }
     }
 }
 
 function displayData(array) {
-	// need to see format before this works, this is the basic structure
-	//put current movie (assuming last element in array Austin pls advise)
 	currentMovie.innerText = array[array.length - 1];
 
-	// put watchlist (assuming elements 0 to end-1
 	html = "";
 	for (i = 0; i < array.length; i++) {
 		// adding newline might not work
 		html += "<li>" + array[i] + "</li>\n";
 	}
-	// document.getElementById("parentElement").innerHTML = html;?
 	watchlist.innerHTML = html;
 }
 

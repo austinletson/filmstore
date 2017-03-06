@@ -1,14 +1,15 @@
 var movies = [{title: "logan", year: "2017"}, {title: "split", year: "2016"}];
 
-chrome.storage.local.set({"movies": movies}, function (){
+//chrome.storage.sync.set({"movies": movies}, function (){
 
-});
+//});
 
 function addMovie(title, year) {
-    chrome.storage.local.get("movies", function(items){
+    chrome.storage.sync.get("movies", function(items){
 
         items.movies.push({title: title, year: year});
-        chrome.storage.local.set({"movies": items.movies}, function(){});
+        chrome.storage.sync.set({"movies": items.movies}, function(){});
+        updateMovieList();
     });
 
 }
@@ -18,7 +19,7 @@ function getMovies() {
 }
 
 function updateMovieList() {
-    chrome.storage.local.get("movies", function(items){
+    chrome.storage.sync.get("movies", function(items){
         moviesFromStorage = items["movies"];
         var output = [];
         for (var i = 0; i < moviesFromStorage.length; i++) {
