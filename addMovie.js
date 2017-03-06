@@ -14,12 +14,12 @@ function checkUrl(tabs) {
 }
 
 function loadMovie() {
-    alert("Loading movie");
+    //alert("Loading movie");
     chrome.runtime.onMessage.addListener(function(request, sender) {
         if (request.action == "getSource") {
             html = request.source;
             firstChar = html.indexOf("<title>");
-            // get title and year
+            // parse for title and year of movie
             title = html.substring(firstChar + 6, html.indexOf(" - IMDb", firstChar) - 6);
             year = html.substring(firstChar + title.length + 7, firstChar + title.length + 11);
             getOMDb(title, year);
@@ -47,6 +47,23 @@ function getOMDb(title, year) {
         }
     }
 }
+
+function displayData(array) {
+	// need to see format before this works, this is the basic structure
+	//put current movie (assuming last element in array Austin pls advise)
+	currentMovie.innerText = array[array.length - 1];
+
+	// put watchlist (assuming elements 0 to end-1
+	html = "";
+	for (i = 0; i < array.length; i++) {
+		// adding newline might not work
+		html += "<li>" + array[i] + "</li>\n";
+	}
+	// document.getElementById("parentElement").innerHTML = html;?
+	watchlist.innerHTML = html;
+}
+
+
 
 function onWindowLoad() {
     var message = document.querySelector('#message');

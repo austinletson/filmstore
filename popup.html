@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style=''>
+<<<<<<< variant A
   <head>
     <script src='/model/watchList.js'></script>
     <script src='addMovie.js'></script>
@@ -7,4 +8,71 @@
   <body style="width:400px;">
     <div id='message'>Doing stuff...</div>
   </body>
+>>>>>>> variant B
+	<head>
+		<script src='addMovie.js'></script>
+		<style type="text/css">
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				table-layout: fixed;
+			}
+			th, td {
+				border: 2px solid #555;
+				text-align: center;
+				word-wrap: break-word;
+			}
+			ul {
+				text-decoration: none;
+				list-style-type: none;
+				margin: 2px 0 2px 0;
+				padding: 0;
+			}
+			.button {
+				background-color: #4CAF50; /* Green */
+				border: none;
+				color: white;
+				margin: 10px 4px 4px 4px;
+				padding: 4px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+			}
+			.container {
+				max-height: 300px;
+				overflow: auto;
+			}
+			li:hover {background-color: #F71545}
+		</style>
+	</head>
+
+	<body style="width:600px">
+			<table>
+				<tr>
+					<th>Watch List</th>
+					<th>Current Movie</th>
+				</tr>
+				<tr>
+					<td>
+						<div class="container">
+						<ul id="watchlist">
+						</ul>
+						</div>
+					</td>
+					<td>
+						<div class="container">
+						<ul>
+							<li id="currentMovie"></li>
+							<li id="addToWatchlist" class="button">
+								Add to Watchlist
+							</li>
+						</ul>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+	</body>
+======= end
 </html>
