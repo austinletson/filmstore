@@ -4,8 +4,8 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, checkUrl)
 
 
 function checkUrl(tabs) {
-    url = tabs[0].url;
-    if (url.indexOf("imdb") != -1){
+   // url = tabs[0].url;
+    if (true) {//url.indexOf("imdb") != -1){
         loadMovie();
     } else {
         alert("No movie found, go to imdb");
@@ -13,16 +13,20 @@ function checkUrl(tabs) {
 
 }
 
+var loaded = false;
 function loadMovie() {
     //alert("Loading movie");
+    var loaded = false;
     chrome.runtime.onMessage.addListener(function(request, sender) {
-        if (request.action == "getSource") {
+        if (request.action == "getSource" && loaded == false) {
             html = request.source;
             firstChar = html.indexOf("<title>");
             // parse for title and year of movie
             title = html.substring(firstChar + 6, html.indexOf(" - IMDb", firstChar) - 6);
             year = html.substring(firstChar + title.length + 7, firstChar + title.length + 11);
             getOMDb(title, year);
+
+            loaded = true;
         }
     });
 }
@@ -39,7 +43,7 @@ function getOMDb(title, year) {
     var isDone = false;
 
     function processRequest(e) {
-        if (xhr.readyState == 4 && xhr.status == 200 && !isDone) {
+        if (xhr.readyState == 4 && xhr.status == 200 && isDone == false) {
             var response = JSON.parse(xhr.responseText);
             addMovie(response.Title, response.Year);
             updateMovieList();

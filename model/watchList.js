@@ -5,23 +5,26 @@ chrome.storage.local.set({"movies": movies}, function (){
 });
 
 function addMovie(title, year) {
-    movies.push({title: title, year: year});
+    chrome.storage.local.get("movies", function(items){
 
-    //chrome.storage.local.set()
+        items.movies.push({title: title, year: year});
+        chrome.storage.local.set({"movies": items.movies}, function(){});
+    });
+
 }
 
 function getMovies() {
     return movies;
 }
 
-var moviesFromStorage = [];
 function updateMovieList() {
     chrome.storage.local.get("movies", function(items){
         moviesFromStorage = items["movies"];
+        var output = [];
         for (var i = 0; i < moviesFromStorage.length; i++) {
-            output = output.concat(JSON.stringify(moviesFromStorage[i]), "....");
+            output.push(moviesFromStorage[i]["title"]);
         }
-        message.innerText = output;
+        displayData(output);
 
     });
 }
