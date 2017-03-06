@@ -14,7 +14,7 @@ function checkUrl(tabs) {
 }
 
 function loadMovie() {
-    alert("Loading movie");
+    //alert("Loading movie");
     chrome.runtime.onMessage.addListener(function(request, sender) {
         if (request.action == "getSource") {
             html = request.source;
