@@ -20,6 +20,7 @@ function addMovie() {
         chrome.storage.sync.set({"movies": items.movies}, function(){});
         updateMovieList();
     });
+    document.getElementById("addButton").innerHTML = "Added";
 
 }
 
