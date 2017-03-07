@@ -1,5 +1,5 @@
 //dummy data
-var movies = [{title: "logan", year: "2017"}, {title: "split", year: "2016"}];
+var movies = [{title: "Logan", year: "2017"}, {title: "Split", year: "2016"}];
 
 //set up storage with dummy data
 chrome.storage.sync.set({"movies": movies}, function (){});
