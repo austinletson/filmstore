@@ -29,12 +29,15 @@ function loadMovie(id) {
     function processRequest(e) {
         if (xhr.readyState == 4 && xhr.status == 200 && isDone == false) {
             var response = JSON.parse(xhr.responseText);
-            addMovie(response.title, response.release_date, response.poster_path);
+            setCurrentMovie(response.title, response.release_date, response.poster_path);
+            updateMovieList();
             isDone = true;
         }
     }
 
 }
+
+
 /** displays watchlist and current movie to popup.html */
 function displayData(movies, currentMovie) {
     var poster = document.createElement("IMG");
