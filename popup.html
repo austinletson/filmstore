@@ -2,8 +2,12 @@
 <head>
     <script src='addMovie.js'></script>
     <script src='watchList.js'></script>
-
+ 
     <style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
      table {
          width: 100%;
          border-collapse: collapse;
@@ -19,14 +23,20 @@
 
      }
      ul {
-         text-decoration: none;
-         list-style-type: none;
-         margin: 2px 0 2px 0;
-         padding: 0;
-     }
-     li {
-         font-size: 12pt;
-     }
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		display: inline;
+		box-sizing: border-box;
+		float: left;
+	}
+	a {
+		display: block
+	}
      .button {
          background-color: #4CAF50; /* Green */
          border: none;
@@ -38,6 +48,13 @@
          display: inline-block;
          font-size: 16px;
      }
+     .center {
+		 float: center;
+	 }
+	 p {
+		 float: center;
+		 text-align: center;
+	 }
      .container {
          max-height: 300px;
          overflow: auto;

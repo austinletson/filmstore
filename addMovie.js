@@ -47,8 +47,51 @@ function displayData(movies, currentMovie) {
 
     html = "";
     for (i = 0; i < movies.length; i++) {
-        // adding newline might not work
-        html += "<li>" + movies[i] + "</li>\n";
-    }
-    watchlist.innerHTML = html;
+		// chop off the month and day of the release date
+		// the year field is now a misnomer, consider renaming to release date
+		id = "movie" + i;
+		innerId = id + "innerList";
+		innerAPosterId = id + "innerAPoster";
+		innerATextId = id + "innerAText";
+		posterLIId = id + "poster";
+		textLIId = id + "text";
+        var poster = document.createElement("IMG");
+        var listItem = document.createElement("LI");
+        var innerList = document.createElement("UL");
+        var innerAPoster = document.createElement("A");
+        var innerAText = document.createElement("A");
+        var posterLI = document.createElement("LI");
+        var textLI = document.createElement("LI");
+        var text = document.createElement("P");
+        
+        listItem.setAttribute("id", id);
+        document.getElementById("watchlist").appendChild(listItem);
+        
+        innerList.setAttribute("class", "innerList");
+        innerList.setAttribute("id", innerId);
+        document.getElementById(id).appendChild(innerList);
+        
+        posterLI.setAttribute("id", posterLIId);
+        posterLI.setAttribute("class", "innerListE");
+        document.getElementById(innerId).appendChild(posterLI);
+        
+        innerAPoster.setAttribute("id", innerAPosterId);
+        document.getElementById(posterLIId).appendChild(innerAPoster);
+        
+        textLI.setAttribute("id", textLIId);
+        textLI.setAttribute("class", "innerListE");
+        document.getElementById(innerId).appendChild(textLI);
+        
+        innerAText.setAttribute("id", innerATextId);
+        innerAText.setAttribute("class", "center");
+        document.getElementById(textLIId).appendChild(innerAText);
+        
+		poster.setAttribute("src", "https://image.tmdb.org/t/p/w500".concat(movies[i].imgId));
+		poster.setAttribute("width", "46");
+		poster.setAttribute("height", "72");
+		document.getElementById(innerAPosterId).appendChild(poster);
+		
+		text.innerText = movies[i].title + " - " + movies[i].year.substring(0,4);
+		document.getElementById(innerATextId).appendChild(text);
+	}
 }
