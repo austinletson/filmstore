@@ -46,8 +46,6 @@ function displayData(movies, currentMovie) {
     poster.setAttribute("height", "143");
 
     document.getElementById("currentMovie").appendChild(poster);
-
-
     html = "";
     for (i = 0; i < movies.length; i++) {
         // chop off the month and day of the release date
