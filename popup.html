@@ -8,6 +8,19 @@
          margin: 0;
          padding: 0;
      }
+     a {
+         display: block
+     }
+     li {
+         display: inline;
+         box-sizing: border-box;
+         float: left;
+     }
+     li:hover {color: #F71545}
+     p {
+         float: center;
+         text-align: center;
+     }
      table {
          width: 100%;
          border-collapse: collapse;
@@ -28,15 +41,6 @@
          padding: 0;
          list-style: none;
      }
-
-     li {
-         display: inline;
-         box-sizing: border-box;
-         float: left;
-     }
-     a {
-         display: block
-     }
      .button {
          background-color: #4CAF50; /* Green */
          border: none;
@@ -50,17 +54,12 @@
          float: none;
      }
      .center {
-         float: center;
-     }
-     p {
-         float: center;
-         text-align: center;
+         float: none;
      }
      .container {
          max-height: 300px;
          overflow: auto;
      }
-     li:hover {color: #F71545}
      #currentMovie{
          float: none;
      }
@@ -84,8 +83,8 @@
                 <div class="container">
                     <ul>
                         <li id="currentMovie"></li>
-                        <li id="addToWatchlist" class="button">
-                            Add to Watchlist
+                        <li class="center">
+                            <button class="button" onclick="addMovie()">Add to Watchlist</button>
                         </li>
                     </ul>
                 </div>
