@@ -1,8 +1,6 @@
 /** grabs url and checks it for imdb*/
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, checkUrl);
 
-// not working please fix
-document.getElementById("addButton").addEventListener("click", addMovie);
 /** checks if user is on imdb and loads movie if they are*/
 function checkUrl(tabs) {
     var imdbRegex = /http:\/\/www.imdb.com\/title/;
@@ -99,4 +97,6 @@ function displayData(movies, currentMovie) {
     }
 }
 
-
+window.onload = function onLoad() {
+    document.getElementById("addButton").addEventListener("click", addMovie);
+}
