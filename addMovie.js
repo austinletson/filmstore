@@ -40,6 +40,19 @@ function loadMovie(id) {
 
 /** displays watchlist and current movie to popup.html */
 function displayData(movies, currentMovie) {
+    
+    // clear out the current watchlist and movie data
+    // should be temporary until we decide on a framework
+    var myNode = document.getElementById("watchlist");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+    
+    var myNode = document.getElementById("currentMovie");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+    
     var poster = document.createElement("IMG");
     poster.setAttribute("src", "https://image.tmdb.org/t/p/w500".concat(currentMovie.imgId));
     poster.setAttribute("width", "91");
