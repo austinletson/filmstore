@@ -21,7 +21,20 @@ function addMovie() {
         updateMovieList();
     });
     document.getElementById("addButton").innerHTML = "Added";
+    document.getElementById("addButton").removeEventListener("click", addMovie);
+    document.getElementById("addButton").addEventListener("click", removeLastMovie);
 
+}
+
+function removeLastMovie() {
+    document.getElementById("addButton").innerHTML = "Add movie";
+    document.getElementById("addButton").addEventListener("click", addMovie);
+    chrome.storage.sync.get("movies", function(items){
+
+        items.movies.pop();
+        chrome.storage.sync.set({"movies": items.movies}, function(){});
+        updateMovieList();
+    });
 }
 
 /** updates the popup with watchlist and current movies*/
