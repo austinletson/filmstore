@@ -1,5 +1,5 @@
 //dummy data
-var movies = [{title: "Logan", year: "2017", imgId: "/45Y1G5FEgttPAwjTYic6czC9xCn.jpg"}, {title: "Split", year: "2016", imgId: "/rXMWOZiCt6eMX22jWuTOSdQ98bY.jpg"}];
+var movies = [{title: "Logan", year: "2017\ntest", imgId: "/45Y1G5FEgttPAwjTYic6czC9xCn.jpg"}, {title: "Split", year: "2016", imgId: "/rXMWOZiCt6eMX22jWuTOSdQ98bY.jpg"}];
 
 //set up storage with dummy data
 chrome.storage.sync.set({"movies": movies}, function (){});
