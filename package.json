@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-      "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-list-view": "^1.0.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   }
