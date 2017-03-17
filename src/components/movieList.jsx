@@ -6,7 +6,9 @@ class MovieList extends React.Component {
 
     constructor (props) {
         super(props);
-        this.state = {movies: [{title: "Dallas Buyers", posterPath: "/nxJFUxDRP9qQCiyD5sH24N5SCSu.jpg"}]}
+        this.state = {movies: [{title: "Dallas Buyers", posterPath: "/nxJFUxDRP9qQCiyD5sH24N5SCSu.jpg"},
+			{title: "Logan", posterPath: "/45Y1G5FEgttPAwjTYic6czC9xCn.jpg"}]}
+        
     }
 
     render() {
@@ -17,10 +19,10 @@ class MovieList extends React.Component {
                     width: 300
                 }}
                 rowCount={this.state.movies.length}
-                rowHeight={20}
+                rowHeight={108}
                 renderItem={(x, y, style) =>
                     <div style={style}>
-                               <MovieListElement movie={this.state.movies[0]} />
+                               <MovieListElement movie={this.state.movies[y]} />
                     </div>
                 }
             />
