@@ -6,6 +6,7 @@ class MovieList extends React.Component {
 
     constructor (props) {
         super(props);
+        // placeholder list
         this.state = {movies: [{title: "Dallas Buyers", posterPath: "/nxJFUxDRP9qQCiyD5sH24N5SCSu.jpg"},
 			{title: "Logan", posterPath: "/45Y1G5FEgttPAwjTYic6czC9xCn.jpg"}]}
         
