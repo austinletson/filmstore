@@ -3,11 +3,13 @@ import React from 'react';
 class CurrentMovie extends React.Component {
     constructor (props){
         super(props);
-        this.state = {movieId: null};
-        /** grabs url and checks it for imdb*/
-        chrome.tabs.query({'active': true, 'lastFocusedWindow': true},
-                          this.checkUrl.bind(this));
+        this.state = {onMovieAdd: props.onMovieAdd, currentMovie: props.currentMovie};
     }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState( {currentMovie: nextProps.currentMovie});
+    }
+
 
     render() {
         const borderStyle ={
@@ -20,63 +22,29 @@ class CurrentMovie extends React.Component {
 
 
         };
-        const titleStyle = {
-            fontSize: '16px',
+        const buttonStyle = {
+            marginTop: '7px',
             textAlign: 'center'
-
         }
+
+        var AddButton = React.createClass({
+            render: function() {
+                return <button type="button" onClick={this.props.onClick}>Add Movie</button>
+            },
+
+            onClick () {
+                alert("hello");
+                this.props.onClick();
+            }
+        });
         return (
             <div style={borderStyle}>
-
-                <h1 style = {titleStyle}>{this.state.title}</h1>
-                <img src={"https://image.tmdb.org/t/p/w500".concat(this.state.posterPath)} height="144" width="92"/>
+                <h1>{this.state.currentMovie.title}</h1>
+                <img src={"https://image.tmdb.org/t/p/w500".concat(this.state.currentMovie.posterPath)} height="144" width="92"/>
+                <button style ={buttonStyle} type="button" onClick={this.props.onMovieAdd}>Add Movie</button>
             </div>
         );
     }
-
-    /** checks if user is on imdb and loads movie if they are*/
-    checkUrl(tabs) {
-        var imdbRegex = /http:\/\/www.imdb.com\/title/;
-        var url = tabs[0].url;
-        if (imdbRegex.exec(url)) {
-            var movieId = url.substring(26, 35);
-            this.setState({
-                movieId: movieId
-            });
-            this.loadMovie(movieId);
-        } else {
-            // just fill the watchlist, no current movie
-
-        }
-
-    }
-
-    /** loads current movie */
-    loadMovie(id) {
-        var xhr = new XMLHttpRequest();
-        var request = "https://api.themoviedb.org/3/movie/".concat(id, "?api_key=18da41385acb8a93f0771cebf418f8a9");
-
-        xhr.open('GET', request,  true);
-        xhr.send();
-        xhr.addEventListener("readystatechange", processRequest.bind(this), false);
-
-        xhr.onreadystatechange = processRequest.bind(this);
-
-        var isDone = false;
-        function processRequest(e) {
-            if (xhr.readyState == 4 && xhr.status == 200 && isDone == false) {
-                var response = JSON.parse(xhr.responseText);
-                this.setState({
-                    title: response.title,
-                    releaseDate: response.release_date,
-                    posterPath: response.poster_path
-                });
-                isDone = true;
-            }
-        }
-
-    }
-
 
 }
 

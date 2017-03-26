@@ -6,9 +6,7 @@ class MovieList extends React.Component {
 
     constructor (props) {
         super(props);
-        this.state = {movies: [{title: "Dallas Buyers", posterPath: "/nxJFUxDRP9qQCiyD5sH24N5SCSu.jpg"},
-			{title: "Logan", posterPath: "/45Y1G5FEgttPAwjTYic6czC9xCn.jpg"}]}
-        
+        this.state = {movies: props.movies};
     }
 
     render() {
@@ -24,6 +22,7 @@ class MovieList extends React.Component {
                     <div style={style}>
                                <MovieListElement movie={this.state.movies[y]} />
                     </div>
+
                 }
             />
         );
